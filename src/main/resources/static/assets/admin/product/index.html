@@ -1,0 +1,37 @@
+<section class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Date</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Available?</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in listProduct">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price | number: 2}}$</td>
+            <td>{{item.createDate | date: 'dd-MM-yyyy'}}</td>
+            <td>{{item.image}}</td>-
+            <td>{{item.category.name}}</td>
+            <td>{{item.available?'Yes':'No '}}</td>
+        </tr>
+        </tbody>
+    </table>
+<!--    <button ng-click="previousPage()" ng-disabled="currentPage === 1">Previous</button>-->
+<!--    <span>Page {{ currentPage }} of {{ totalPages }}</span>-->
+<!--    <button ng-click="nextPage()" ng-disabled="currentPage === totalPages">Next</button>-->
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li ng-click="previousPage()" ng-disabled="currentPage === 1" class="page-item"><a class="page-link"  type="button">Previous</a></li>
+            <li  class="page-item"><a class="page-link"  type="button"><span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span></a></li>
+            <li  ng-click="nextPage()" ng-disabled="currentPage === totalPages" class="page-item"><a class="page-link" type="button">Next</a></li>
+        </ul>
+    </nav>
+</section>

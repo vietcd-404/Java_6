@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" xmlns:th="http://www.thymeleaf.org" style="margin-bottom: 20px">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/product/list}">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <th:block th:if="${#request.remoteUser}">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/logout}">Sign Out</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/order/list}">Your Orders</a>
+                    </li>
+                    <li class="nav-item" th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAFF')}">
+                        <a class="nav-link" th:href="@{/admin/home/index}">Administration</a>
+                    </li>
+                </th:block>
+                <th:block th:unless="${#request.remoteUser}">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" th:href="@{/login}">Sign In</a>
+                    </li>
+                </th:block>
+            </ul>
+            <ul th:if="${#request.remoteUser}" class="nav navbar-nav navbar-right">
+                <li><a href="#">Welcome <b id="username">[[${#request.remoteUser}]]</b> </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
